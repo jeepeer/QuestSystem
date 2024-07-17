@@ -5,6 +5,7 @@ public class QuestObjectEditor : Editor
 {
     #region SerializedProperty
     SerializedProperty questName;
+    SerializedProperty questDescription;
     SerializedProperty questStart;
     SerializedProperty questStartNpc;
     SerializedProperty questStartItem;
@@ -17,6 +18,7 @@ public class QuestObjectEditor : Editor
     private void OnEnable()
     {
         questName = serializedObject.FindProperty("questName");
+        questDescription = serializedObject.FindProperty("questDescription");
         questStart = serializedObject.FindProperty("questStart");
         questStartNpc = serializedObject.FindProperty("questStartNpc");
         questStartItem = serializedObject.FindProperty("questStartItem");
@@ -31,6 +33,7 @@ public class QuestObjectEditor : Editor
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(questName);
+        EditorGUILayout.PropertyField(questDescription);
         EditorGUILayout.PropertyField(questStart);
         if (questStart.intValue == (int)QuestStart.npc)
         {

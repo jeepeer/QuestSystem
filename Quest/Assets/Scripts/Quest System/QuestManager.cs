@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(QuestUI))]
 public class QuestManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<Quest> activeQuests;
+    private QuestUI questUI;
+
+    private void Start()
     {
-        
+        if (!TryGetComponent<QuestUI>(out questUI))
+        {
+            Debug.LogError($"Could not find QuestUI");
+        }
+        activeQuests = new List<Quest>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HandleQuest(Quest quest)
     {
-        
+        if (!activeQuests.Contains(quest))
+        {
+            activeQuests.Add(quest);
+        }
+
+        questUI.DisplayQuestText(quest);
+        return;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 public class Quest : ScriptableObject
 {
     public string questName;
+    public string questDescription;
     public QuestStart questStart;
     public QuestStartNpc questStartNpc;
     public QuestStartItem questStartItem;

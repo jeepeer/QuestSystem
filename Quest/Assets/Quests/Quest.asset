@@ -12,3 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3205a2a355f149842a02b4dade754019, type: 3}
   m_Name: Quest
   m_EditorClassIdentifier: 
+  questName: Name
+  questDescription: Description
+  questStart: 1
+  questStartNpc: 1
+  questStartItem: 1
+  questStartLocation: 2
+  questObjective: 0
+  questReward: 1
+  exp: 1000
