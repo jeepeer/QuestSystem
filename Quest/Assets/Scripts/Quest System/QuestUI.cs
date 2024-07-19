@@ -8,7 +8,7 @@ public class QuestUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questNameText;
     [SerializeField] private TextMeshProUGUI questDescriptionText;
 
-    public void DisplayQuestText(Quest quest)
+    public void DisplayQuest(Quest quest)
     {
         questNameText?.SetText(quest.questName);
         questDescriptionText?.SetText(quest.questDescription);

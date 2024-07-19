@@ -5,11 +5,11 @@ public class Quest : ScriptableObject
 {
     public string questName;
     public string questDescription;
-    public QuestStart questStart;
-    public QuestStartNpc questStartNpc;
-    public QuestStartItem questStartItem;
-    public QuestStartLocation questStartLocation;
+    public QuestNpc questNpc;
+    public Items questItem;
+    public QuestLocation questLocation;
     public QuestObjective questObjective;
     public QuestReward questReward;
     public int exp;
+    public GameObject objectToSpawn;
 }

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questName: Name
   questDescription: Description
-  questStart: 1
-  questStartNpc: 1
-  questStartItem: 1
-  questStartLocation: 2
-  questObjective: 0
-  questReward: 1
-  exp: 1000
+  questStartNpc: 0
+  questNpc: 1
+  questItem: 3
+  questLocation: 0
+  questObjective: 1
+  questReward: 0
+  exp: 0
+  objectToSpawn: {fileID: 6707177260048333845, guid: 97280ecb98404ee47bddf73209fdb93d, type: 3}

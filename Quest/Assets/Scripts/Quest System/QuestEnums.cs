@@ -1,36 +1,29 @@
-public enum QuestStart
+public enum QuestObjective
 {
-    npc,
-    item,
-    location
+    talkToNpc,
+    collectItems,
+    getToLocation
 }
 
-public enum QuestStartNpc
+public enum QuestNpc
 {
-    highwayman,
-    girl,
-    guy
+    npc01,
+    npc02,
+    npc03
 }
 
-public enum QuestStartItem
+public enum QuestItem
 {
     sword,
     book,
     apple
 }
 
-public enum QuestStartLocation
+public enum QuestLocation
 {
     beach,
     inn,
     church
-}
-
-public enum QuestObjective
-{
-    talkToNpc,
-    collectItems,
-    getToLocation
 }
 
 public enum QuestReward

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(QuestManager))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
 
     private Rigidbody2D rigidbody;
     private BoxCollider2D collider;
-    private QuestManager questManager;
 
     private void Start()
     {
@@ -22,10 +21,6 @@ public class Player : MonoBehaviour
         if (!TryGetComponent<BoxCollider2D>(out collider))
         {
             Debug.LogError($"Could not find Collider2D");
-        }
-        if (!TryGetComponent<QuestManager>(out questManager))
-        {
-            Debug.LogError($"Could not find QuestManager");
         }
     }
 
@@ -54,9 +49,13 @@ public class Player : MonoBehaviour
             RaycastHit2D[] results = ColliderCastResults();
             if (results.Length <= 0) { return; }
 
-            if (results[0].transform.tag == "Npc" || results[0].transform.tag == "Item")
+            if (results[0].transform.tag == "Npc")
             {
-                HandleQuests(results[0]);
+                results[0].transform.GetComponent<Npc>()?.OnInteracted();
+            }
+            else if(results[0].transform.tag == "Item")
+            {
+                results[0].transform.GetComponent<Item>()?.OnInteracted();
             }
         }
     }
@@ -73,40 +72,5 @@ public class Player : MonoBehaviour
 
         collider.size /= 2.0f;
         return new RaycastHit2D[0];
-    }
-
-    private void HandleQuests(RaycastHit2D result)
-    {
-        switch (result.transform.tag)
-        {
-            case "Npc":
-                if (result.transform.TryGetComponent(out Npc npc))
-                {
-                    if (!npc.hasQuest) { return; }
-                    if (!npc.quest)
-                    {
-                        Debug.LogError($"Could not find {npc} Quest");
-                        return;
-                    }
-
-                    questManager.HandleQuest(npc.quest);
-                }
-                break;
-            case "Item":
-                if (result.transform.TryGetComponent(out Item item))
-                {
-                    if (!item.hasQuest) { return; }
-                    if (!item.quest)
-                    {
-                        Debug.LogError($"Could not find {item} Quest");
-                        return;
-                    }
-
-                    questManager.HandleQuest(item.quest);
-                }
-                break;
-            default:
-                break;
-        }
     }
 }

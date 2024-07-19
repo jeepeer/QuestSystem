@@ -6,26 +6,26 @@ public class QuestObjectEditor : Editor
     #region SerializedProperty
     SerializedProperty questName;
     SerializedProperty questDescription;
-    SerializedProperty questStart;
-    SerializedProperty questStartNpc;
-    SerializedProperty questStartItem;
-    SerializedProperty questStartLocation;
+    SerializedProperty questNpc;
+    SerializedProperty questItem;
+    SerializedProperty questLocation;
     SerializedProperty questObjective;
     SerializedProperty questReward;
     SerializedProperty exp;
+    SerializedProperty objectToSpawn;
     #endregion
 
     private void OnEnable()
     {
         questName = serializedObject.FindProperty("questName");
         questDescription = serializedObject.FindProperty("questDescription");
-        questStart = serializedObject.FindProperty("questStart");
-        questStartNpc = serializedObject.FindProperty("questStartNpc");
-        questStartItem = serializedObject.FindProperty("questStartItem");
-        questStartLocation = serializedObject.FindProperty("questStartLocation");
+        questNpc = serializedObject.FindProperty("questNpc");
+        questItem = serializedObject.FindProperty("questItem");
+        questLocation = serializedObject.FindProperty("questLocation");
         questObjective = serializedObject.FindProperty("questObjective");
         questReward = serializedObject.FindProperty("questReward");
         exp = serializedObject.FindProperty("exp");
+        objectToSpawn = serializedObject.FindProperty("objectToSpawn");
     }
 
     public override void OnInspectorGUI()
@@ -34,23 +34,25 @@ public class QuestObjectEditor : Editor
 
         EditorGUILayout.PropertyField(questName);
         EditorGUILayout.PropertyField(questDescription);
-        EditorGUILayout.PropertyField(questStart);
-        if (questStart.intValue == (int)QuestStart.npc)
-        {
-            EditorGUILayout.PropertyField(questStartNpc);
-        }
-        else if (questStart.intValue == (int)QuestStart.item)
-        {
-            EditorGUILayout.PropertyField(questStartItem);
-        }
-        else if (questStart.intValue == (int)QuestStart.location)
-        {
-            EditorGUILayout.PropertyField(questStartLocation);
-        }
 
         EditorGUILayout.PropertyField(questObjective);
+        if (questObjective.intValue == (int)QuestObjective.collectItems)
+        {
+            EditorGUILayout.PropertyField(questItem);
+        }
+        else if (questObjective.intValue == (int)QuestObjective.getToLocation)
+        {
+            EditorGUILayout.PropertyField(questLocation);
+        }
+        else if (questObjective.intValue == (int)QuestObjective.talkToNpc)
+        {
+            EditorGUILayout.PropertyField(questNpc);
+        }
+
         EditorGUILayout.PropertyField(questReward);
         EditorGUILayout.PropertyField(exp);
+        EditorGUILayout.PropertyField(objectToSpawn);
+
         serializedObject.ApplyModifiedProperties();
     }
 }
